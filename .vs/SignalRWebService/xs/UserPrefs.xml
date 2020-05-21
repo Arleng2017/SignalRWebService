@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{38643D6E-8AC0-4AAB-962D-CF66F451A170}|Default">
+  <MonoDevelop.Ide.ItemProperties.SignalRWebService PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SignalRService/ChatGroup.cs">
+    <Files>
+      <File FileName="Startup.cs" Line="73" Column="59" />
+      <File FileName="Views/Home/Privacy.cshtml" Line="57" Column="1" />
+      <File FileName="wwwroot/js/chatgroup.js" Line="51" Column="52" />
+      <File FileName="Models/PersonModel.cs" Line="9" Column="2" />
+      <File FileName="Properties/launchSettings.json" Line="11" Column="27" />
+      <File FileName="SignalRService/ChatGroup.cs" Line="37" Column="21" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SignalRWebService" expanded="True">
+            <Node name="SignalRWebService" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="SignalRService" expanded="True">
+                <Node name="ChatGroup.cs" selected="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="js" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
