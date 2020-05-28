@@ -34,7 +34,7 @@ namespace SignalRWebService
                    builder.AllowAnyMethod()
                    .AllowAnyHeader()
                    .AllowCredentials()
-                   .WithOrigins("http://localhost:8100");
+                   .WithOrigins("http://localhost:8100", "http://localhost:8101");
                }));
             services.AddSignalR();
 
@@ -51,16 +51,11 @@ namespace SignalRWebService
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            //app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseCors("CorsPolicy");
-            //app.UseSignalR(routes =>
-            //{
-            //routes.MapHub<ChatGroup>("/chatGroup");
-            //});
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -77,10 +72,6 @@ namespace SignalRWebService
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-
-
-            //app.UseCookiePolicy();
-            //app.UseCors("CorsPolicy");
         }
     }
 }

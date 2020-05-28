@@ -26,17 +26,33 @@ namespace SignalRWebService.SignalRService
             return Clients.Group(groupName).SendAsync("Send", $"{Context.ConnectionId}: {message}");
         }
 
-        public async Task IsOnline(string displayname)
+        public async Task Login()
         {
-            if (!personList.Any(it => it.Id.Contains(Context.ConnectionId)))
+            if (personList.Any())
             {
-                personList.Add(new PersonModel
-                {
-                    Id = Context.ConnectionId,
-                    DisplayName = displayname
-                });
+                personList.RemoveAll(it => it.DisplayName == "admin");
             }
-            await Clients.All.SendAsync("UserOnline", displayname);
+            personList.Add(new PersonModel
+            {
+                Id = Context.ConnectionId,
+                DisplayName = "admin"
+            });
+            await Clients.Client(personList.FirstOrDefault().Id).SendAsync("LoginSuccess");
+        }
+
+        public async Task Logout()
+        {
+            //var isLogout = personList.Remove(personList.Where(it=>it.Id==Context.ConnectionId).LastOrDefault());
+            personList.RemoveAll(it => it.DisplayName == "admin");
+            await Clients.Client(Context.ConnectionId).SendAsync("LogoutSuccess");
+        }
+
+        public Task CancelOrder()
+        {
+            //var adminId = personList.Where(it =>it.DisplayName == "admin")
+            //    .Select(it=>it.Id)
+            //    .FirstOrDefault();
+            return Clients.Client(personList.FirstOrDefault().Id).SendAsync("SendCancelOrderSuccess","Ok");
         }
 
         public Task SendPrivateMessage(string user, string message)
