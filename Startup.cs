@@ -12,7 +12,7 @@ using SignalRWebService.SignalRService;
 using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Cors;
-
+using Microsoft.OpenApi.Models;
 
 namespace SignalRWebService
 {
@@ -29,12 +29,16 @@ namespace SignalRWebService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
             services.AddCors(option => option.AddPolicy("CorsPolicy", builder =>
                {
                    builder.AllowAnyMethod()
                    .AllowAnyHeader()
                    .AllowCredentials()
-                   .WithOrigins("http://localhost:8100", "http://localhost:8101");
+                   .WithOrigins("http://localhost:8100", "http://localhost:8101", "http://localhost:8102");
                }));
             services.AddSignalR();
 
@@ -54,6 +58,14 @@ namespace SignalRWebService
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseCors("CorsPolicy");
 
 
